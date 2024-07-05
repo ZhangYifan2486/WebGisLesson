@@ -1,0 +1,147 @@
+#map{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+
+html,body{
+	padding: 0;
+	margin: 0;
+
+}
+
+.mousePosition{
+	position: absolute;
+	background-color: #0b2e13;
+	width:200px;
+	height: 40px;
+	z-index: 2005;
+	bottom:10px;
+	right:2px;
+	color: white;
+}
+			
+			
+/* 设置缩小按钮位置 */			
+#map .ol-zoom-out{
+	margin-top: 250px;
+}
+/* 空间缩放滑动层级设置 */
+#map .ol-zoomslider{
+	/* 设置z位置层级 */
+	z-index: 999;
+}
+/* 修改extent */
+#map .ol-zoom-extent{
+	margin-top: 230px;
+	
+}
+/* 更改比例尺位置 */
+#map .ol-scale-line{
+	margin-bottom: 150px;
+}
+
+/*标题样式*/
+.map-top{
+	position: absolute;
+	top:0;
+	left:0;
+	height:70px;
+	width: 100%;
+	z-index: 99;
+	/*background-color:cornflowerblue;*/
+	background:linear-gradient(315deg,#00AAFF 25%,#0f6674 100%);
+	background-size: 100% 100%;
+	font-size: 36px;
+	color:white;
+	padding-top:0px;
+	display: flex;
+	justify-content: center;
+}
+
+/*背景图片*/
+.imageBack{
+	width: 70px;
+	height: 70px;
+	padding: 0;
+	margin: 0;
+	background-image: url("../image/rotation.gif");
+}
+/*左侧菜单栏*/
+.map-left{
+	position: absolute;
+	top:70px;
+	left: 10px;
+	width: 300px;
+	height: calc(100% - 100px);
+	background-color: rgb(7 95 204/50%);
+	z-index: 99;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding-top:20px;
+	opacity: 90%;
+}
+
+.map-right{
+	z-index: 2001;
+	position: absolute;
+	bottom: 0px;
+	right:0px;
+	background-color: #0f6674;
+	opacity: 50%;
+	color:black;
+}
+
+/*图层列表标题*/
+.title{
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+}
+/*图层选择快*/
+.map-left-item{
+	height: 60px;
+	width: calc(100% - 20px);
+	text-align: center;
+	font-size: 24px;
+	/*color:white;*/
+	cursor: pointer;
+
+	margin: 5px 0;
+	/*渐变样式修改*/
+	background:linear-gradient(315deg,#42d392 25%,#647eff 100%);
+	box-shadow: inset 0px 0px 8px 0px rgb(63 188 255 / 90%);
+	border-radius: 4px;
+	border: 1px solid #5aa5ff;
+	font-weight: 400;
+	color:#ffffff;
+	cursor: pointer;
+}
+/*停留改变颜色*/
+.map-left-item:hover{
+	background:linear-gradient(315deg,#42d392 100%,#647eff 100%);
+}
+/*设置table的样式以及行列样式*/
+table{
+	table-layout: fixed;
+	width: 100%;
+	text-align: left;
+}
+table{
+	display: inline-block;
+	width: 100%;
+	overflow: auto;
+	max-height: 900px;
+}
+table tr {
+	display: flex;
+	width: 100%;
+}
+table td ,table th{
+	display: inline-block;
+	flex: 1;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
