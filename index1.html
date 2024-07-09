@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--    引入jquary-->
-    <script src="js/jquery-2.1.1/jquery-2.1.1.js"></script>
-<!--    引入bootstrap-->
+	<!--    引入ol文件-->
+	    <script src="js/ol/ol.js"></script>
+	    <link rel="stylesheet" type = "text/css" href="js/ol/ol.css">
+	<!--    引入jquary-->
+    <script src="./js/jquery-2.1.1/jquery-2.1.1.min.js"></script>
+	<!--    引入bootstrap-->
     <link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.css"></link>
     <script src="js/bootstrap/js/bootstrap.js"></script>
-<!--    引入文件-->
-    <script src="js/ol/ol.js"></script>
-    <link rel="stylesheet" type = "text/css" href="js/ol/ol.css">
+	<!-- 引入自定义js -->
+	<!-- 首页css -->
     <link rel="stylesheet" type="text/css" href="css/map.css"></link>
+	<!-- 图层控制js,包括addEvent()切换显示，setInnerText()设置文本，loadlayerControl()加载图层 -->
+	 <script src="js/layersControl.js"></script>
+	 <!-- 地图工具js，包括addChangeEvent()切换显示单个geojson,changeTableInfo() -->
     <script src="js/mapUtil.js"></script>
+	<!-- 初始化地图工具，以及添加控件 -->
     <script src="js/initMap4.js"></script>
-    <script src="js/layerAdd.js"></script>
+	<!-- 图层添加js，主要为添加6个矢量图层，并编制样式，返回值为图层数组 -->
+	<script src="js/layerAdd.js"></script>
+    <!-- style.css 控制svg动画 -->
     <link rel="stylesheet" type="text/css" href="css/svg.css"></link>
 </head>
 <body>
@@ -27,110 +35,171 @@
 </div>
 <!--左侧菜单栏-->
 <div class="map-left">
-<!--图层控制列表-->
+	<!--图层控制列表-->
     <div class="layerControl" id="layerControl">
         <div><label class="title">图层列表</label></div>
-<!--    图层选择块-->
-            <div class="map-left-item" onclick="addChange(3)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            城市洼地
-            </div>
-
-            <div class="map-left-item" onclick="addChange(4)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            救援队
-            </div>
-
-            <div class="map-left-item"  onclick="addChange(5)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            救援仓库物资存储点
-            </div>
-
-            <div class="map-left-item" onclick="addChange(1)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            历史内涝点
-            </div>
-
-            <div class="map-left-item" onclick="addChange(0)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            历史内涝区域
-            </div>
-
-            <div class="map-left-item"  onclick="addChange(2)"
-                 data-toggle="tooltip" data-placement="top" title="点击显示图层">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
-                    <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
-                </svg>
-            住宅地下空间
-            </div>
-
+		<!--    图层选择块-->
+		<div class="map-left-item" onclick="addChange(0)"
+             data-toggle="tooltip" data-placement="top" title="点击显示图层">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+                <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+            </svg>
+        历史内涝区域
+        </div>
+		
+		<div class="map-left-item" onclick="addChange(1)"
+		     data-toggle="tooltip" data-placement="top" title="点击显示图层">
+		    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+		        <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+		    </svg>
+		历史内涝点
+		</div>
+		
+		<div class="map-left-item"  onclick="addChange(2)"
+		     data-toggle="tooltip" data-placement="top" title="点击显示图层">
+		    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+		        <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+		    </svg>
+		住宅地下空间
+		</div>
+		
+        <div class="map-left-item" onclick="addChange(3)"
+             data-toggle="tooltip" data-placement="top" title="点击显示图层">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+                <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+            </svg>
+        城市洼地
+        </div>
+        <div class="map-left-item" onclick="addChange(4)"
+             data-toggle="tooltip" data-placement="top" title="点击显示图层">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+                <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+            </svg>
+        救援队
+        </div>
+        <div class="map-left-item"  onclick="addChange(5)"
+             data-toggle="tooltip" data-placement="top" title="点击显示图层">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 32 32">
+                <path class="icon-path" d="M 16 3 C 8.8 3 3 8.8 3 16 C 3 23.2 8.8 29 16 29 C 23.2 29 29 23.2 29 16 C 29 14.6 28.800781 13.200391 28.300781 11.900391 L 26.699219 13.5 C 26.899219 14.3 27 15.1 27 16 C 27 22.1 22.1 27 16 27 C 9.9 27 5 22.1 5 16 C 5 9.9 9.9 5 16 5 C 19 5 21.599609 6.1996094 23.599609 8.0996094 L 25 6.6992188 C 22.7 4.3992188 19.5 3 16 3 z M 27.300781 7.5 L 16 18.800781 L 11.699219 14.5 L 10.300781 16 L 16 21.699219 L 28.699219 9 L 27.300781 7.5 z"></path>
+            </svg>
+        救援仓库物资存储点
+        </div>
     </div>
-
 </div>
 <!--右边列表框-->
 <div class="map-right">
-    <table class="info-table" cellspacing="0" id="table" border="0" align="center" width="800px"
+    <table class="info-table" id="info-table" cellspacing="0" id="table" border="0" align="center" width="800px"
     height="400px">
     </table>
 </div>
-
 <!--引用bootstrap-->
-<button type="button"  class=" btn btn-secondary" data-toggle="tooltip" data-placement="top"
+<div type="button"  class=" btn btn-secondary" data-toggle="tooltip" data-placement="top"
         title="经纬度提示">
     <div id="mousePosition" class="mousePosition"></div>
-</button>
+</div>
+<!-- 弹出框 -->
+<div id="popup" class="ol-popup">
+	<!--弹出框头部  -->
+	<div class="pophead" style="width: 100%;height: 20px">
+		<div id="popup-title" style="font:bold 15px 宋体;align:left;position: absolute;top: 5px;
+		left: 8px;color: #000000;">信息</div>
+		<a href="#" id="popup-closer" class="ol-popup-closer" style="color:#8e908c">❌</a>
+	</div>
+	
+	<!--弹出框内容  -->
+	<div id="popup-content" style="padding: 10px;"></div>
+			
+</div>
+	
+<!-- 图层控制列表 -->
+<div id="layerList" class="layerList">
+	<div><label class="titleLib">图层列表</label></div>
+	<ul id="layerTree" class="layerTree">
+		 
+	</ul>
+</div>
 
 <script>
-
-    let map = mapInit('map')
-    let tdtimglayer = new ol.layer.Tile({source: new ol.source.XYZ({
-            url:"http://t0.tianditu.gov.cn/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=79902e76677506eb643c9547de6f0d2e",
-            wrapX:false
-        })
-    });
-    map.addLayer(tdtimglayer)
-
-    //添加6个图层,并返回图层数据
-    let layerArr = initJsonLayer(map)
-
-    // 获取表格函数
-    function getTable(i){
+	// 地图初始化工作
+    var map = mapInit('map')
+				
+	//添加6个图层,并返回图层数据给数组layerArr
+	var layerArr = initLayer(map)
+	
+    // 获取表格函数,获取数据要素给features,并调用changeTableInfo函数生成表格
+    function getTable(index){
         // 获取数据源要素
-        let source = layerArr[i].getSource()
+        let source = layerArr[index].getSource()
         let features =  source.getFeatures()
-        console.log(typeof(features))
         changeTableInfo(features)
     }
 
     // 整合图层显示以及表格显示
-    async function addChange(i){
-        await addChangeEvent(i)
+    function addChange(index){
+        addChangeEvent(index)
         // getTable(i)
         setTimeout(()=>{
-            getTable(i)
+            getTable(index)
         },50)
+		let classList = document.getElementsByClassName('map-left-item')
+		// 遍历改类名,修改按键样式
+		for (let i = 0; i < layerArr.length; i++) {
+			if(layerArr[i].getVisible() === true){
+				classList[i].className = 'map-left-item active-item'
+			}else{
+				classList[i].className = 'map-left-item'
+			}
+		}
+		// 同步到右侧图层列表
+		document.getElementById('layerTree').innerHTML = ""
+		loadlayerControl(map,'layerTree')
+		
     }
-    
-
+	
+	//获取dom变量
+	var container = document.getElementById("popup");
+	var content = document.getElementById("popup-content");
+	var popupCloser = document.getElementById("popup-closer");
+	
+	// 定义overlay对象
+	var overlay = new ol.Overlay({
+		element:container,
+		autoPan:true
+	})
+	
+	// 地图点击获取弹窗
+	map.on("click",function(evt){
+			var feature = map.forEachFeatureAtPixel(evt.pixel,function(feature,layer){
+				return feature;	
+			})
+			if(feature){
+				attr = feature.getProperties();
+				content.innerHTML = "<ul>"+
+				"<li>ID:" + attr.FID + "</li>" + 
+				"<li>所在地址:" + attr.dz + "</li>" + 
+				"</ul>"
+				var coodinate = evt.coordinate;
+				overlay.setPosition(coodinate);
+				// 用map的addOverlay方法，将上述的overlay加入到map中
+				map.addOverlay(overlay)
+			}else{
+				overlay.setPosition(undefined)
+			}
+		})
+	// 关闭按钮事件
+	popupCloser.addEventListener('click',function(){
+		overlay.setPosition(undefined)
+	})
+	// 建立鼠标移动事件
+	map.on("pointermove",function(e){
+		var pixel = map.getEventPixel(e.originalEvent);
+		var hit = map.hasFeatureAtPixel(pixel);
+		map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+		
+	})
+	// 加载图层控制
+	loadlayerControl(map,'layerTree')
 </script>
-
-
-
 
 </body>
 </html>

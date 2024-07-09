@@ -1,5 +1,5 @@
 .map-left-item:hover{
-    animation: icon-path-animation 2s ease-in infinite;
+    animation: icon-path-animation 1.5s ease-in infinite;
 }
 @keyframes icon-path-animation {
     0% {
